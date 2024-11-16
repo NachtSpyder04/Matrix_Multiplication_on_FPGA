@@ -1,2 +1,2 @@
-# SystConv
-Convolutions on FPGA using Systolic arrays
+# Matrix_Multplication on FPGA
+
