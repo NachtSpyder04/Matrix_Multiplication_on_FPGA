@@ -10,3 +10,6 @@ To build and run this project, you need:
 - Xilinx Vitis IDE (2022.1 or later)
 - Software Platform for the targeted Xilinx board (or use a default pre-built one) 
 - Xilinx FPGA board (If you are flashing it on hardware).
+
+##### Note:
+You can view my Verilog Implementation of Matrix Multiplication [here](https://github.com/NachtSpyder04/Matrix_Multiplication_on_FPGA/tree/verilog). 
