@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="ASCII"?>
+<systemproject:SystemProject xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:systemproject="http://www.xilinx.com/systemproject" name="mat_mul_system" platform="/home/senate/workspace/kv260_custom/export/kv260_custom/kv260_custom.xpfm" platformUID="xilinx:kv260:kv260_hardware_platform:0.0(custom)" sysConfig="kv260_custom" rootFSLocation="" linuxImage="" sysroot="/tools/Xilinx/sysroots/cortexa72-cortexa53-xilinx-linux">
+  <configuration name="Emulation-SW" id="com.xilinx.sdx.system.managedbuilder.swemu.configuration.1895310775">
+    <configBuildOptions xsi:type="systemproject:SystemOptions">
+      <applications name="mat_mul_system_hw_link" domainName="" domainPrettyName="pl" appBuildConfig="Emulation-SW"/>
+      <applications name="mat_mul_kernels" domainName="" domainPrettyName="pl" appBuildConfig="Emulation-SW"/>
+      <applications name="mat_mul" domainName="linux_domain" domainPrettyName="linux on psu_cortexa53" appBuildConfig="Emulation-SW"/>
+    </configBuildOptions>
+  </configuration>
+  <configuration name="Emulation-HW" id="com.xilinx.sdx.system.managedbuilder.hwemu.configuration.2065243628">
+    <configBuildOptions xsi:type="systemproject:SystemOptions" target="hw_emu">
+      <applications name="mat_mul_system_hw_link" domainName="" domainPrettyName="pl" appBuildConfig="Emulation-HW"/>
+      <applications name="mat_mul_kernels" domainName="" domainPrettyName="pl" appBuildConfig="Emulation-HW"/>
+      <applications name="mat_mul" domainName="linux_domain" domainPrettyName="linux on psu_cortexa53" appBuildConfig="Emulation-HW"/>
+    </configBuildOptions>
+  </configuration>
+  <configuration name="Hardware" id="com.xilinx.sdx.system.managedbuilder.hw.configuration.1635882193">
+    <configBuildOptions xsi:type="systemproject:SystemOptions" target="hw">
+      <applications name="mat_mul_system_hw_link" domainName="" domainPrettyName="pl" appBuildConfig="Hardware"/>
+      <applications name="mat_mul_kernels" domainName="" domainPrettyName="pl" appBuildConfig="Hardware"/>
+      <applications name="mat_mul" domainName="linux_domain" domainPrettyName="linux on psu_cortexa53" appBuildConfig="Hardware"/>
+    </configBuildOptions>
+  </configuration>
+</systemproject:SystemProject>

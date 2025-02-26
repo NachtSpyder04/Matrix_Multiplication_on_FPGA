@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="ASCII"?>
+<hwkernel:HwKernelProject xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hwkernel="http://www.xilinx.com/acceleration/hwkernel" name="mat_mul_kernels" platform="/home/senate/workspace/kv260_custom/export/kv260_custom/kv260_custom.xpfm" platformUID="xilinx:kv260:kv260_hardware_platform:0.0(custom)" systemProject="mat_mul_system" cpu="">
+  <configuration name="Emulation-SW" id="com.xilinx.ide.accel.config.hwkernel.sw_emu.1327720823" dirty="true">
+    <configBuildOptions xsi:type="hwkernel:KernelOptions" kernelDebug="true">
+      <kernels name="krnl_matmul" sourceFile="src/krnl_matmul.cpp">
+        <args name="in1" master="true"/>
+        <args name="in2" master="true"/>
+        <args name="out" master="true"/>
+      </kernels>
+    </configBuildOptions>
+  </configuration>
+  <configuration name="Emulation-HW" id="com.xilinx.ide.accel.config.hwkernel.hw_emu.1941315979" dirty="true">
+    <configBuildOptions xsi:type="hwkernel:KernelOptions" kernelDebug="true" target="hw_emu">
+      <kernels name="krnl_matmul" sourceFile="src/krnl_matmul.cpp">
+        <args name="in1" master="true"/>
+        <args name="in2" master="true"/>
+        <args name="out" master="true"/>
+      </kernels>
+    </configBuildOptions>
+  </configuration>
+  <configuration name="Hardware" id="com.xilinx.ide.accel.config.hwkernel.hw.603984514">
+    <configBuildOptions xsi:type="hwkernel:KernelOptions" target="hw">
+      <kernels name="krnl_matmul" sourceFile="src/krnl_matmul.cpp">
+        <args name="in1" master="true"/>
+        <args name="in2" master="true"/>
+        <args name="out" master="true"/>
+      </kernels>
+    </configBuildOptions>
+    <lastBuildOptions xsi:type="hwkernel:KernelOptions" target="hw">
+      <kernels name="krnl_matmul" sourceFile="src/krnl_matmul.cpp">
+        <args name="in1" master="true"/>
+        <args name="in2" master="true"/>
+        <args name="out" master="true"/>
+      </kernels>
+    </lastBuildOptions>
+  </configuration>
+</hwkernel:HwKernelProject>
