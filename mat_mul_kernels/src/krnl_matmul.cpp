@@ -2,7 +2,6 @@
 #include <hls_stream.h>
 
 #define MAT_SIZE 16
-#define TILE_SIZE 4
 
 // TRIPCOUNT identifier
 const int c_size = MAT_SIZE;
@@ -10,38 +9,31 @@ const int c_size = MAT_SIZE;
 
 static void row_col(uint32_t* in1, uint32_t* in2, uint32_t* out ){
 
-	  int A[TILE_SIZE][TILE_SIZE] = {0};
-	#pragma HLS ARRAY_PARTITION variable=A complete dim=2
-	    int B[TILE_SIZE][TILE_SIZE] = {0};
-	#pragma HLS ARRAY_PARTITION variable=A complete dim=2
-	    int C[TILE_SIZE][TILE_SIZE] = {0};
-	#pragma HLS ARRAY_PARTITION variable=A complete dim=2
+	int A[MAT_SIZE*MAT_SIZE] = {0};
+	int B[MAT_SIZE*MAT_SIZE] = {0};
+	int C[MAT_SIZE*MAT_SIZE] = {0};
 
-TILE:
-for (int a = 0; a < MAT_SIZE; a+=TILE_SIZE){
-#pragma HLS PIPELINE II = 1
-	for (int b = 0; a < MAT_SIZE; b+=TILE_SIZE) {
 
 	READ:
-	for (int i = 0; i<TILE_SIZE; i++){
+	for (int i = 0; i<MAT_SIZE; i++){
 #pragma HLS PIPELINE II = 1
-		for (int j = 0; j<TILE_SIZE; j++){
+		for (int j = 0; j<MAT_SIZE; j++){
 				#pragma HLS UNROLL
 
-				A[i][j] = in1[(a+i)*MAT_SIZE + (b+j)];
-				B[i][j] = in2[(a+i)*MAT_SIZE + (b+j)];
+				A[i*MAT_SIZE + j] = in1[i*MAT_SIZE + j];
+				B[i*MAT_SIZE + j] = in2[i*MAT_SIZE + j];
 			}
 	}
 
 	ROW:
-	for (int i = 0; i < TILE_SIZE; i++){
+	for (int i = 0; i < MAT_SIZE; i++){
 #pragma HLS PIPELINE II = 1
 		COL:
-		for (int j = 0; j < TILE_SIZE; j++){
+		for (int j = 0; j < MAT_SIZE; j++){
 				COMPUTE:
-				for (int k = 0; k < TILE_SIZE; k++){
+				for (int k = 0; k < MAT_SIZE; k++){
 					#pragma HLS UNROLL
-					C[i][j] = C[i][j] + A[i][k] * B[k][j];
+					C[i*MAT_SIZE + j] = C[i*MAT_SIZE + j] + A[i*MAT_SIZE + k] * B[k*MAT_SIZE + j];
 
 				}
 
@@ -49,18 +41,16 @@ for (int a = 0; a < MAT_SIZE; a+=TILE_SIZE){
 	}
 
 	WRITE:
-		for (int i = 0; i<TILE_SIZE; i++){
+		for (int i = 0; i<MAT_SIZE; i++){
 #pragma HLS PIPELINE II = 1
-			for (int j = 0; j<TILE_SIZE; j++){
+			for (int j = 0; j<MAT_SIZE; j++){
 					#pragma HLS UNROLL
-					out[(a+i)*MAT_SIZE + (b+j)] = C[i][j];
+					out[i*MAT_SIZE + j] = C[i*MAT_SIZE + j];
 
 				}
 		}
 	}
-}
 
-}
 
 extern "C" {
 
